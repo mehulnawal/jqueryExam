@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Juqery</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+
+  <body>
+    <!-- cursor srt -->
+    <div class="cursor"></div>
+    <div class="cursor2"></div>
+    <!-- cursor end -->
+
+    <!-- loader srt -->
+    <div class="loader">
+      <div class="page-loader"></div>
+    </div>
+    <!-- loader end -->
+
+    <!--  -->
+    <div class="container">
+      <div class="content">
+        <a>Custom cursor and loader in wesbite</a>
+
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed quam
+          eveniet nesciunt sint ea vitae deleniti facere id ut tempora voluptas,
+          quos alias consequatur vel ullam maxime atque, sit esse.
+        </p>
+      </div>
+    </div>
+
+    <!-- jquery script -->
+    <script src="./assets/js/jquery-3.7.1.min.js"></script>
+
+    <!-- loader -->
+    <script>
+      $(window).on("load", function () {
+        $(".loader").delay(1000).fadeOut(2000);
+        $(".page-loader").delay(1000).fadeOut(1000);
+      });
+
+      // $("body").removeClass("loading");
+    </script>
+
+    <!-- custom cursor -->
+    <script>
+      var cursor = document.querySelector(".cursor");
+      var cursorinner = document.querySelector(".cursor2");
+      var a = document.querySelectorAll("a");
+
+      document.addEventListener("mousemove", function (e) {
+        var x = e.clientX;
+        var y = e.clientY;
+        cursor.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`;
+      });
+
+      document.addEventListener("mousemove", function (e) {
+        var x = e.clientX;
+        var y = e.clientY;
+        cursorinner.style.left = x + "px";
+        cursorinner.style.top = y + "px";
+      });
+
+      document.addEventListener("mousedown", function () {
+        cursor.classList.add("click");
+        cursorinner.classList.add("cursorinnerhover");
+      });
+
+      document.addEventListener("mouseup", function () {
+        cursor.classList.remove("click");
+        cursorinner.classList.remove("cursorinnerhover");
+      });
+
+      a.forEach((item) => {
+        item.addEventListener("mouseover", () => {
+          cursor.classList.add("hover");
+        });
+        item.addEventListener("mouseleave", () => {
+          cursor.classList.remove("hover");
+        });
+      });
+    </script>
+  </body>
+</html>
